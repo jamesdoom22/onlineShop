@@ -1,0 +1,7 @@
+TO START BACKEND
+    Go to backend directory
+    Open terminal and type 'npm start'
+
+TO START FRONTEND
+    Go to frontend directory
+    Open terminal and type 'ng serve'
