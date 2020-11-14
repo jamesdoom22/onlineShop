@@ -5,3 +5,36 @@ TO START BACKEND
 TO START FRONTEND
     Go to frontend directory
     Open terminal and type 'ng serve'
+
+home.component.html
+    Display 10 products in home page
+        <div class="col-md-4 col-sm-6" *ngFor="let p of products">
+            <div class="card my-2">
+                <img [src]="p.image" alt="{{p.name}}" width="200px" class="card-img-top" style="cursor: pointer;" (click)="selectProduct(p.id)">
+                <div class="card-header">
+                    <div class="card-title">
+                        <p>{{p.name | titlecase}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+home.component.ts
+    Start up code for home page
+    export class HomeComponent implements OnInit {
+        products: any[] = [];
+        
+        constructor(private productService: ProductService, private router: Router) { }
+
+        ngOnInit(): void {
+        this.productService.getAllProducts().subscribe((prods: {count: Number, products: any[]}) => {
+        this.products = prods.products;
+        console.log(prods)
+        });
+        }
+
+        selectProduct(id: Number){
+            this.router.navigate(['/product', id]).then();
+        }
+    }
+    
